@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+       #map {
+       height:100vh;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <h3>My Family Map</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+          var html = '<div class="det">';
+            html += '<div style="float:left; padding-right: 5px;">'
+            html += '<div> Akbar Ali</div>'
+            html += '<div style="float:left;padding-right: 5px;"><a href="https://facebook.com/akkunnect" target="_blank"><i class="fab fa-facebook-square"></i></a></div>'
+            html += '<div style="float:left;padding-right: 5px;"><a href="https://twitter.com/akbarhere"  target="_blank"><i class="fab fa-twitter-square"></i></a></div>'
+            html += '<div style="float:left;padding-right: 5px;"><a href="http://iam.akbarali.co.in"  target="_blank"><i class="fas fa-globe"></i></a></div>'
+            html += '</div>'
+            html += '<div style = "float:right">'
+            html += '<img src="https://lh3.googleusercontent.com/-O0HRMzlFxK0/AAAAAAAAAAI/AAAAAAAAAAA/AIcfdXCHT4I-tWl1crVcoBsaxfgpLSJn6Q/s32-c-mo/photo.jpg">'
+            html += '</div>'
+            html += '</div>'
+        var infowindow = new google.maps.InfoWindow({ // Create a new InfoWindow
+  			content:html
+  		});
+        var myHome = {lat: 10.947383, lng: 76.144720};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: myHome
+        });
+        var marker = new google.maps.Marker({
+          position: myHome,
+          map: map
+        });
+         marker.addListener('click', function() {
+          map.setCenter(marker.getPosition());
+          infowindow.open(map,marker);
+        });
+      }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAolNxISEzxze8yiBp5z4cZ5v8KTScdrCw&callback=initMap">
+    </script>
+  </body>
+</html>
